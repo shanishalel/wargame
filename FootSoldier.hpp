@@ -7,8 +7,4 @@ health_points=100;
 damage = 10;
 num_player=num_p;
 }
-
-
-
-
 };

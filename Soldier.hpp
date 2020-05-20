@@ -1,3 +1,4 @@
+#pragma once
 #include <stdlib.h>
 #include <iostream>
 
@@ -12,6 +13,7 @@ class Soldier{
     int getNum();
     int getHealth();
     int getDamge();
+    void attack(Soldier s);
     
 
 
