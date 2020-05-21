@@ -10,12 +10,15 @@ class Soldier{
 
     Soldier(){}
 
-    int getNum();
-    int getHealth();
-    int getDamge();
+    int getNum(){
+        return num_player;
+    }
+    int getHealth(){
+        return health_points;
+    }
+    int getDamge(){
+        return damage;
+    }
     void attack(Soldier s);
-    
-
-
 
 };
