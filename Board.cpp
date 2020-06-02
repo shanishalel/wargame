@@ -26,8 +26,7 @@ namespace WarGame {
                 Soldier *s = board[source.first][source.second];
                 board[source.first][source.second] = nullptr; // to check
                 board[source.first-1][source.second] = s;
-                Soldier *a=checkClose( {source.first-1,source.second} , check );
-                s->attack(*a);
+                s->attack( board ,{source.first-1,source.second} );
             }
             // Down
             if (direction == Down){
@@ -36,8 +35,7 @@ namespace WarGame {
                 Soldier *s = board[source.first][source.second];
                 board[source.first][source.second] = nullptr; // to check
                 board[source.first+1][source.second] = s;
-                Soldier *a=checkClose( {source.first+1,source.second} , check );
-                s->attack(*a);
+                s->attack( board ,{source.first+1,source.second} );
             }
             //Left
             if (direction == Left){
@@ -46,8 +44,7 @@ namespace WarGame {
                 Soldier *s = board[source.first][source.second];
                 board[source.first][source.second] = nullptr; // to check
                 board[source.first][source.second-1] = s;
-                Soldier *a=checkClose( {source.first,source.second-1} , check );
-                s->attack(*a);
+                s->attack( board ,{source.first,source.second-1} );
             }
             //Right
             if (direction == Right){
@@ -56,8 +53,7 @@ namespace WarGame {
                 Soldier *s = board[source.first][source.second];
                 board[source.first][source.second] = nullptr; // to check
                 board[source.first][source.second+1] = s;
-                Soldier *a=checkClose( {source.first,source.second+1} , check );
-                s->attack(*a);
+                s->attack( board ,{source.first,source.second+1} );
             }
 
 
@@ -71,7 +67,7 @@ namespace WarGame {
              for(int i=0; i<board.size();i++){
                  for(int j=0; j<board[i].size();j++){
                      Soldier* s= board[i][j];
-                     if(s!=nullptr && s->num_player==player_number){
+                     if(s!=nullptr && s->getNum()==player_number){
                         return true;
                      }
                  }
@@ -81,26 +77,7 @@ namespace WarGame {
          }
 
 
-        Soldier* Board:: checkClose(std::pair<int,int> source , uint player_number){
-            int min_dis=std::numeric_limits<int>::max();
-            Soldier *s = nullptr;
-            for(int i=0;i<board.size();i++){
-                for(int j=0;j<board[0].size();j++){
-                    if(board[i][j]!=nullptr && i!=source.first && j!=source.second ){
-                        if(board[i][j]->num_player==player_number){
-                            int temp=sqrt(pow(i-source.first,2)+pow(j-source.second,2)); //distance
-                            if(temp<min_dis){
-                                min_dis=temp;
-                                s=board[i][j];
-                            }
-                        }
-                    }    
-
-                }
-            }
-        return s;
-
-        }
+       
 
 
   /*

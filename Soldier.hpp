@@ -1,24 +1,37 @@
 #pragma once
 #include <stdlib.h>
 #include <iostream>
+#include <vector>
+
+using namespace std;
 
 class Soldier{
+    private:
+    uint  health_points;
+    uint  max_health_points;
+    uint damage;
+    uint num_player;
+
     public:
-    int  health_points;
-    int damage;
-    int num_player;
-
-    Soldier(){}
-
+    Soldier(int max_health,int damage , int num_player) :
+       max_health_points(max_health), health_points(max_health_points) , damage(damage) , num_player(num_player)
+    {} 
+    virtual ~Soldier(){};
+    virtual void attack(vector<vector<Soldier *>> &board, pair<int, int> location) = 0;
     int getNum(){
-        return num_player;
+        return this->num_player;
     }
     int getHealth(){
-        return health_points;
+        return this->health_points;
+    }
+    void setHealth(uint  health_points1){
+        this->health_points=health_points1;   
+    }
+    int getMaxHealth(){
+        return this->max_health_points;
     }
     int getDamge(){
-        return damage;
+        return this->damage;
     }
-    void attack(Soldier s);
 
 };
