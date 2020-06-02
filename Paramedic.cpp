@@ -1,5 +1,4 @@
 #include "Paramedic.hpp"
-#include "math.h"
 
 using namespace std;
 
@@ -57,12 +56,6 @@ namespace WarGame{
                board[i+1][j+1]->setHealth(board[i+1][j+1]->getMaxHealth());
            }
        }
-
-
-
-
-
-     
     }
 
 
