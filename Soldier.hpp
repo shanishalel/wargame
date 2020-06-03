@@ -14,7 +14,7 @@ class Soldier{
 
     public:
     Soldier(int max_health,int damage , int num_player) :
-       max_health_points(max_health), health_points(max_health_points) , damage(damage) , num_player(num_player)
+       max_health_points(max_health), health_points(max_health) , damage(damage) , num_player(num_player)
     {} 
     virtual ~Soldier(){};
     virtual void attack(vector<vector<Soldier *>> &board, pair<int, int> location) = 0;

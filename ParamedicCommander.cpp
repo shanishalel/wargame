@@ -2,7 +2,7 @@
 
 using namespace std;
 
-namespace WarGame{
+
 //pass through the board and call every paramedic in the board that in the same player
     void ParamedicCommander :: attack(vector<vector<Soldier *>> &board, pair<int, int> location){
        Soldier *s = board[location.first][location.second];
@@ -31,4 +31,3 @@ namespace WarGame{
     }
 
 
-}

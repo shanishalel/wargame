@@ -2,7 +2,7 @@
 
 using namespace std;
 
-namespace WarGame{
+
 //pass through the board and call every sniper in the board that in the same player
     void  SniperCommander :: attack(vector<vector<Soldier *>> &board, pair<int, int> location){
        Soldier *s = board[location.first][location.second];
@@ -26,4 +26,3 @@ namespace WarGame{
           }   
       }
     }
-}

@@ -2,7 +2,7 @@
 
 using namespace std;
 
-namespace WarGame{
+
    //cure all te soldier that are 1 step close to him of the same player
     void FootCommander :: attack(vector<vector<Soldier *>> &board, pair<int, int> location){
        Soldier *s = board[location.first][location.second];
@@ -36,4 +36,3 @@ namespace WarGame{
     }
 
 
-}
