@@ -7,7 +7,7 @@ using namespace std;
 const int max_health_point = 100;
 const int Damage = 10;
 
-namespace WarGame{
+
 class FootSoldier : public  Soldier {
 
 public:
@@ -18,4 +18,3 @@ void attack(vector<vector<Soldier *>> &board, pair<int, int> location);
 Soldier* checkClose(vector<vector<Soldier *>> &board,std::pair<int,int> source , uint player_number);
 
 };
-}

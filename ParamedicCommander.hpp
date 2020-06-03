@@ -7,7 +7,7 @@ using namespace std;
 const int max_health_point = 100;
 const int Damage = 200;
 
-namespace WarGame{
+
 class ParamedicCommander : public  Paramedic {
 
 public:
@@ -17,4 +17,3 @@ ParamedicCommander(int max_health_point , int damage , int num_p) : Paramedic(ma
 void attack(vector<vector<Soldier *>> &board, pair<int, int> location);
 
 };
-}

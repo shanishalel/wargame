@@ -7,7 +7,7 @@ using namespace std;
 const int max_health_point = 120;
 const int Damage = 100;
 
-namespace WarGame{
+
 class SniperCommander : public  Sniper {
 
 public:
@@ -16,4 +16,3 @@ SniperCommander(int max_health_point , int damage , int num_p) : Sniper(max_heal
 void attack(vector<vector<Soldier *>> &board, pair<int, int> location);
 
 };
-}
