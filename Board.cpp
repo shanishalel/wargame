@@ -20,7 +20,8 @@ namespace WarGame {
             int check =0;
             if ( player_number ==1 ) check =2;
             else check =1;
-            if (direction == Up){
+            //Down
+            if (direction == Down){
             if(source.first - 1  < 0) throw ("std::invalid_argument");
              else if (board[source.first-1][source.second] != nullptr) throw ("std::invalid_argument");
                 Soldier *s = board[source.first][source.second];
@@ -28,13 +29,15 @@ namespace WarGame {
                 board[source.first-1][source.second] = s;
                 s->attack( board ,{source.first-1,source.second} );
             }
-            // Down
-            if (direction == Down){
-            if(source.first + 1  > board.size()) throw ("std::invalid_argument");
-             else if (board[source.first+1][source.second] != nullptr) throw ("std::invalid_argument");
+            // UP
+            if (direction == Up){
+            if(source.first + 1  >= board.size()) throw ("std::invalid_argument");
+             else if (board[source.first+1][source.second] != nullptr) throw ("std::invalid_argument");            
                 Soldier *s = board[source.first][source.second];
-                board[source.first][source.second] = nullptr; // to check
+                if(s==nullptr){throw ("std::invalid_argument");
+                }
                 board[source.first+1][source.second] = s;
+               board[source.first][source.second] = nullptr; // to check 
                 s->attack( board ,{source.first+1,source.second} );
             }
             //Left
@@ -48,7 +51,7 @@ namespace WarGame {
             }
             //Right
             if (direction == Right){
-            if(source.second + 1  > board[0].size()) throw ("std::invalid_argument");
+            if(source.second + 1  >= board[0].size()) throw ("std::invalid_argument");
              else if (board[source.first][source.second+1] != nullptr) throw ("std::invalid_argument");
                 Soldier *s = board[source.first][source.second];
                 board[source.first][source.second] = nullptr; // to check

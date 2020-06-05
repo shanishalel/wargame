@@ -15,13 +15,12 @@
 #include <cassert>
 
 //check exceptions in diff cases
-
+/*
 TEST_CASE("Sniper VS Sniper") { //good
     WarGame::Board board(8,8);
     CHECK(!board.has_soldiers(1));
     board[{0,1}] = new Sniper(1);
     CHECK(board.has_soldiers(1));
-
     CHECK(!board.has_soldiers(2));
 	board[{7,1}] = new Sniper(2);
     CHECK(board.has_soldiers(2));
@@ -34,6 +33,7 @@ TEST_CASE("Sniper VS Sniper") { //good
     CHECK(!board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
 }
+
 
 TEST_CASE("Foot vs Foot") {
     WarGame::Board board(8,8);
@@ -117,10 +117,7 @@ TEST_CASE("3 VS 3") {
 
     CHECK(board.has_soldiers(2));
 
-    board.move(1,{0,1},WarGame::Board::MoveDIR::Up); //player 2 footsoldier1 - 90
-    CHECK(board.has_soldiers(2));
-    CHECK(board.has_soldiers(1));
-    CHECK_THROWS(board.move(1,{0,1},WarGame::Board::MoveDIR::Up)); //no soldier there
+    board.move(1,{0board[{0,0}] = new FootSoldier(1);//player 1 soldierard.move(1,{0,1},WarGame::Board::MoveDIR::Up)); //no soldier there
     board.move(1,{1,1},WarGame::Board::MoveDIR::Up); //player 2 footsoldier1 - 80 
     CHECK(board.has_soldiers(2));
     CHECK(board.has_soldiers(1));
@@ -163,6 +160,8 @@ TEST_CASE("3 VS 3") {
 	
 	// the winner is team 1
 }
+*/
+
 TEST_CASE("One soldier of this type"){
     WarGame::Board board(8,8);
     CHECK(!board.has_soldiers(1));
@@ -186,32 +185,45 @@ TEST_CASE("One soldier of this type"){
     board[{7,5}] = new ParamedicCommander(2);//player 2 soldier6
 
 
+
 	//consider using for.....
     CHECK(board.has_soldiers(2));
     board.move(1,{0,0},WarGame::Board::MoveDIR::Up); //player2 soldier1 - 90
     CHECK(board.has_soldiers(2));
+
     board.move(1,{0,1},WarGame::Board::MoveDIR::Up);//player2 soldier2 - 130, player 2 soldier1 - 80
     CHECK(board.has_soldiers(2));
+
     board.move(1,{0,2},WarGame::Board::MoveDIR::Up);//player2 soldier6 - 150
     CHECK(board.has_soldiers(2));
+
     board.move(1,{0,3},WarGame::Board::MoveDIR::Up);//player2 soldier6 - 50, player 2 soldier2 80 //need to define that commander shoots first
     CHECK(board.has_soldiers(2));
+
+
+
     board.move(1,{0,4},WarGame::Board::MoveDIR::Up);//player1 soldier4 - 120 //need to define that curing id done after the step/move
     CHECK(board.has_soldiers(2));
+
     board.move(1,{0,5},WarGame::Board::MoveDIR::Up); //player1 soldier5 - 100, player 1 soldier4 - 120, player 1 soldier6 - 200
     CHECK(board.has_soldiers(2));
-	
+	    
+
 	
     //sniper 1 will kill them all
     board.move(1,{1,3},WarGame::Board::MoveDIR::Down); //player2 soldier6 - 100, player 2 soldier2 80
 	CHECK(board.has_soldiers(2));
+
+
     board.move(1,{0,3},WarGame::Board::MoveDIR::Up); //player2 soldier4 - 20, player2 soldier3 - 50 //need to define to check the closes when there are equalh healh points
 	CHECK(board.has_soldiers(2));
+
+
     board.move(1,{1,3},WarGame::Board::MoveDIR::Down); //player2 soldier5 - 0, player2 soldier6 - 50
     CHECK(board.has_soldiers(2));
+
     board.move(1,{0,3},WarGame::Board::MoveDIR::Up); //player2 soldier1 - 0, player2 soldier2 - 30
         //just to be Sure all is dead
-
         board.move(1,{1,2},WarGame::Board::MoveDIR::Down); //player2 soldier3 - 0, player2 soldier 6 - 20/10
         board.move(1,{0,2},WarGame::Board::MoveDIR::Up); //player2 soldier3 - 0, player2 soldier 6 - 0
         board.move(1,{1,2},WarGame::Board::MoveDIR::Down); //player2 soldier3 - 0, player2 soldier 6 - 0
@@ -221,6 +233,8 @@ TEST_CASE("One soldier of this type"){
 	
 	//good test
 }
+
+
 TEST_CASE("2 VS 2"){
     WarGame::Board board(8,8);
     CHECK(!board.has_soldiers(1));

@@ -10,7 +10,7 @@ using namespace std;
        int j=location.second;
       for (int i = 0; i < board.size(); i++)
       {
-          for (int i = 0; i < board[0].size(); i++)
+          for (int j = 0; j < board[0].size(); j++)
           {
                  Soldier *a=board[i][j];
                  if( a != nullptr){
@@ -18,7 +18,9 @@ using namespace std;
                      FootCommander *footcom = dynamic_cast<FootCommander*> (a);
                      if ( footcom == nullptr || ( i == location.first && j == location.second)) {                     
                      if ( fs->getNum() == s->getNum()){
+                         if ( fs != nullptr){
                          fs->FootSoldier::attack(board , {i,j});
+                         }
                      }
                     }
                  }

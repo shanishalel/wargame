@@ -15,7 +15,7 @@ using namespace std;
             Soldier *attack = nullptr;
             for(int i=0;i<board.size();i++){
                 for(int j=0;j<board[0].size();j++){
-                    if(board[i][j]!=nullptr && i!=location.first && j!=location.second ){
+                    if(board[i][j]!=nullptr ){
                         if(board[i][j]->getNum()!=num_player){
                             int temp=sqrt(pow(i-location.first,2)+pow(j-location.second,2)); //distance
                             if(temp<min_dis){
