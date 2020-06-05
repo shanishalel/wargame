@@ -38,7 +38,7 @@ namespace WarGame {
                 }
                 board[source.first+1][source.second] = s;
                board[source.first][source.second] = nullptr; // to check 
-                s->attack( board ,{source.first+1,source.second} );
+                s->attack( board ,{source.first+1,source.second});
             }
             //Left
             if (direction == Left){
@@ -70,8 +70,10 @@ namespace WarGame {
              for(int i=0; i<board.size();i++){
                  for(int j=0; j<board[i].size();j++){
                      Soldier* s= board[i][j];
-                     if(s!=nullptr && s->getNum()==player_number){
+                     if (s!=nullptr){
+                     if( s->getNum()==player_number){
                         return true;
+                     }
                      }
                  }
 
