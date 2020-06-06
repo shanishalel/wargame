@@ -3,6 +3,7 @@
 
 using namespace std;
 
+
 void FootSoldier::attack(vector<vector<Soldier *>> &board, pair<int, int> dest)
 {
 
@@ -49,6 +50,8 @@ void FootSoldier::attack(vector<vector<Soldier *>> &board, pair<int, int> dest)
     }
 }
 
+
+
     /*
     //move 1 step every direction and shot on soldier that is the closest to him
     //gets the board and the location of the soldier
@@ -83,9 +86,9 @@ void FootSoldier::attack(vector<vector<Soldier *>> &board, pair<int, int> dest)
            board[v][z] = nullptr;
        }
     }
-    */
+    
 
-/*
+
 //return the soldier that we need to attack (get our player number)
  Soldier* checkClose(vector<vector<Soldier *>> &board,std::pair<int,int> location , uint player_number){
             int min_dis=99999999;
@@ -106,5 +109,5 @@ void FootSoldier::attack(vector<vector<Soldier *>> &board, pair<int, int> dest)
         return s;
 
         }
-*/
 
+*/
