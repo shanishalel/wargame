@@ -9,9 +9,12 @@ namespace WarGame {
 
 class Board {
   private:
+    
     std::vector<std::vector<Soldier*>> board;
   public:
+    //enum that represent the direction 
     enum MoveDIR { Up, Down, Right, Left };
+    
     
     Board(uint numRows, uint numCols) : 
       board(numRows, std::vector<Soldier*>(numCols, nullptr)) {}
@@ -35,7 +38,7 @@ class Board {
     //      must be handled by polymorphism.
     void move(uint player_number, std::pair<int,int> source, MoveDIR direction);
 
-    // returns true iff the board contains one or more soldiers of the given player.
+    // returns true if the player has an soldiers on the board
     bool has_soldiers(uint player_number) const;
 
     };

@@ -1,6 +1,7 @@
 #include "FootSoldier.hpp"
 #include "math.h"
 
+/* shoot the solider that is the closest to him */
 void FootSoldier::attack(vector<vector<Soldier *>> &board, pair<int, int> dest)
 {
 
@@ -14,9 +15,11 @@ void FootSoldier::attack(vector<vector<Soldier *>> &board, pair<int, int> dest)
         {
             Soldier *s;
             s= board[i][j];
-            if(s!=nullptr && (s->getNum() != board[dest.first][dest.second]->getNum()))
+            //check all the board and save the closest until there
+            if(s!=nullptr && (s->getNum() != board[dest.first][dest.second]->getNum())) // isn't the same player
             {
-                double dist = sqrt((i-dest.first)*(i-dest.first) + (j-dest.second)*(j-dest.second));
+                //distance= sqrt[(x1-x2)^2+(y1-y2)^2]
+                double dist = sqrt((i-dest.first)*(i-dest.first) + (j-dest.second)*(j-dest.second)); 
                 if(dist<closest)
                 {
                     closest =dist;
@@ -27,21 +30,24 @@ void FootSoldier::attack(vector<vector<Soldier *>> &board, pair<int, int> dest)
             }
         }
     }
-    if(found){
+
+    if(found){ // found=1
         Soldier *s = board[ci][cj];
-        int hp = s->getHealth() - board[dest.first][dest.second]->getDamge();
-        if(hp <= 0)
-        {
+        int hp = s->getHealth() - board[dest.first][dest.second]->getDamge();//the shoot 
+        if(hp <= 0){//he is dead
             board[ci][cj] = nullptr;
         }
-        else
-        {
+        else{//he is damage
             s->setHealth(hp);
         }
         
         
     }
 }
+
+
+
+
 
 
 

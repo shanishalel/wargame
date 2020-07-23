@@ -3,29 +3,21 @@
 using namespace std;
 
 
-
- void SniperCommander::attack(vector<vector<Soldier*>> &board,pair<int,int> dest)
-    {
-        for(int i=0;i<board.size();i++)
-    {
-        for(int j=0;j<board[i].size();j++)
-        {
+/*as a sniper but all the other sniper attack as well*/
+ void SniperCommander::attack(vector<vector<Soldier*>> &board,pair<int,int> dest) {
+    for(int i=0;i<board.size();i++){
+        for(int j=0;j<board[i].size();j++){
             Soldier *s = board[i][j];
-            if(s!=nullptr)
-            {
-                if(Sniper *fs = dynamic_cast<Sniper*> (s))
-                {
-                   
-                    SniperCommander *fc = dynamic_cast<SniperCommander*> (s);
-                    if((fc == nullptr) || (i == dest.first && j==dest.second))
-                    {
-                    if(fs->getNum() == board[dest.first][dest.second]->getNum())
-                    {
-                        fs->Sniper::attack(board,make_pair(i,j));
-                    
-                    }
-                    }
-                    
+            if(s!=nullptr){ 
+                if(Sniper *fs = dynamic_cast<Sniper*> (s)){//he is a sniper
+                    SniperCommander *fc = dynamic_cast<SniperCommander*> (s); 
+                    //if he isn't a sniper commander/ he is the location we are
+                    if((fc == nullptr) || (i == dest.first && j==dest.second)){ 
+                        if(fs->getNum() == board[dest.first][dest.second]->getNum()){//same player
+                            fs->Sniper::attack(board,make_pair(i,j));
+                        
+                        }
+                    }  
                     
                 }
             }

@@ -1,124 +1,60 @@
 #include "Paramedic.hpp"
 
-
-void Paramedic::attack(vector<vector<Soldier *>> &board, pair<int, int> dest)
-{
-    int iter = 1;
-    for (int x = -iter; x <= iter; x++)
-    {
-
-        Soldier *s;
-        // iter,x
-        if (dest.first + iter >= 0 && dest.first + iter < board.size())
-        {
-            if (dest.second + x >= 0 && dest.second + x < board[dest.first + iter].size())
-            {
-                s = board[dest.first + iter][dest.second + x];
-                if (s != nullptr && s->getNum() == board[dest.first][dest.second]->getNum())
-                {
-                    s->setHealth(s->getMaxHealth());
-                }
-            }
-        }
-        // -iter,x
-        if (dest.first - iter >= 0 && dest.first - iter < board.size())
-        {
-            if (dest.second + x >= 0 && dest.second + x < board[dest.first - iter].size())
-            {
-                s = board[dest.first - iter][dest.second + x];
-                if (s != nullptr && s->getNum() == board[dest.first][dest.second]->getNum())
-                {
-                     s->setHealth(s->getMaxHealth());
-                }
-            }
-        }
-
-        //x,-iter
-        if (dest.first + x >= 0 && dest.first + x < board.size())
-        {
-            if (dest.second - iter >= 0 && dest.second - iter < board[dest.first + x].size())
-            {
-                s = board[dest.first + x][dest.second - iter];
-                if (s != nullptr && s->getNum() == board[dest.first][dest.second]->getNum())
-                {
-                    s->setHealth(s->getMaxHealth());
-                }
-            }
-        }
-        //x,iter
-        if (dest.first + x >= 0 && dest.first + x < board.size())
-        {
-            if (dest.second + iter >= 0 && dest.second + iter < board[dest.first + x].size())
-            {
-                s = board[dest.first + x][dest.second + iter];
-                if (s != nullptr && s->getNum() == board[dest.first][dest.second]->getNum())
-                {
-                    s->setHealth(s->getMaxHealth());
-                }
-            }
-        }
-    }
-}
-
-
-
-
-/*
-   //cure all te soldier that are 1 step close to him of the same player
+/* cure all the solider that are 1 step near him */
     void Paramedic :: attack(vector<vector<Soldier *>> &board, pair<int, int> location){
        Soldier *s = board[location.first][location.second];
        int i=location.first;
        int j=location.second;
        //UP
-       if ( i-1 >= 0 && board[i-1][j] != nullptr ){
-           if ( board[i-1][j]->getNum() == s->getNum() ){
-               board[i-1][j]->setHealth(board[i-1][j]->getMaxHealth());
+       if ( i-1 >= 0 && board[i-1][j] != nullptr ){ //there is a footsoldier there
+           if ( board[i-1][j]->getNum() == s->getNum() ){ //the same player
+               board[i-1][j]->setHealth(board[i-1][j]->getMaxHealth()); //cure him
            }
        }
        //Down
-       if ( i+1 <board.size() && board[i+1][j] != nullptr ){
-           if ( board[i+1][j]->getNum() == s->getNum() ){
-               board[i+1][j]->setHealth(board[i+1][j]->getMaxHealth());
+       if ( i+1 <board.size() && board[i+1][j] != nullptr ){//there is a footsoldier there
+           if ( board[i+1][j]->getNum() == s->getNum() ){//the same player
+               board[i+1][j]->setHealth(board[i+1][j]->getMaxHealth());//cure him
            }
        }
        //left
-        if ( j-1 >= 0 && board[i][j-1] != nullptr ){
-           if ( board[i][j-1]->getNum() == s->getNum() ){
-               board[i][j-1]->setHealth(board[i][j-1]->getMaxHealth());
+        if ( j-1 >= 0 && board[i][j-1] != nullptr ){//there is a footsoldier there
+           if ( board[i][j-1]->getNum() == s->getNum() ){//the same player
+               board[i][j-1]->setHealth(board[i][j-1]->getMaxHealth());//cure him
            }
        }
        // Right
-       if ( j+1< board[0].size() && board[i][j+1] != nullptr ){
-           if ( board[i][j+1]->getNum() == s->getNum() ){
-               board[i][j+1]->setHealth(board[i][j+1]->getMaxHealth());
+       if ( j+1< board[0].size() && board[i][j+1] != nullptr ){//there is a footsoldier there
+           if ( board[i][j+1]->getNum() == s->getNum() ){//the same player
+               board[i][j+1]->setHealth(board[i][j+1]->getMaxHealth());//cure him
            }
        }
         // Up and Left
-        if ( i-1 >= 0 && j-1 >= 0 && board[i-1][j-1] != nullptr ){
-           if ( board[i-1][j-1]->getNum() == s->getNum() ){
-               board[i-1][j-1]->setHealth(board[i-1][j-1]->getMaxHealth());
+        if ( i-1 >= 0 && j-1 >= 0 && board[i-1][j-1] != nullptr ){//there is a footsoldier there
+           if ( board[i-1][j-1]->getNum() == s->getNum() ){//the same player
+               board[i-1][j-1]->setHealth(board[i-1][j-1]->getMaxHealth());//cure him
            }
        }
         // Up and Right
-        if ( i-1 >= 0 && j+1< board[0].size() && board[i-1][j+1] != nullptr ){
-           if ( board[i-1][j+1]->getNum() == s->getNum() ){
-               board[i-1][j+1]->setHealth(board[i-1][j+1]->getMaxHealth());
+        if ( i-1 >= 0 && j+1< board[0].size() && board[i-1][j+1] != nullptr ){//there is a footsoldier there
+           if ( board[i-1][j+1]->getNum() == s->getNum() ){//the same player
+               board[i-1][j+1]->setHealth(board[i-1][j+1]->getMaxHealth());//cure him
            }
        }
        //Down and Left
-          if ( i+1 <board.size() && j-1 >= 0 && board[i+1][j-1] != nullptr ){
-           if ( board[i+1][j-1]->getNum() == s->getNum() ){
-               board[i+1][j-1]->setHealth(board[i+1][j-1]->getMaxHealth());
+          if ( i+1 <board.size() && j-1 >= 0 && board[i+1][j-1] != nullptr ){//there is a footsoldier there
+           if ( board[i+1][j-1]->getNum() == s->getNum() ){//the same player
+               board[i+1][j-1]->setHealth(board[i+1][j-1]->getMaxHealth());//cure him
            }
        }
        // Down and Right
-        if ( i+1 <board.size() && j+1< board[0].size() && board[i+1][j+1] != nullptr ){
-           if ( board[i+1][j+1]->getNum() == s->getNum() ){
-               board[i+1][j+1]->setHealth(board[i+1][j+1]->getMaxHealth());
+        if ( i+1 <board.size() && j+1< board[0].size() && board[i+1][j+1] != nullptr ){//there is a footsoldier there
+           if ( board[i+1][j+1]->getNum() == s->getNum() ){//the same player
+               board[i+1][j+1]->setHealth(board[i+1][j+1]->getMaxHealth());//cure him
            }
        }
     }
 
-*/
+
 
 
