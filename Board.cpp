@@ -16,7 +16,72 @@ namespace WarGame {
             return  board[location.first][location.second];
         }
 
-        void Board::move(uint player_number, std::pair<int,int> source, MoveDIR direction) {
+        
+        void Board::move(uint player_number, std::pair<int,int> source, MoveDIR direction)
+            {
+                 if(source.first>=board.size() || source.second>=board.size()){
+                    throw invalid_argument("invaild location");
+                 }
+                Soldier *src = board[source.first][source.second];
+                if(src == nullptr)
+                {
+                    throw invalid_argument("No player on source");
+                }
+                if(src->getNum() != player_number)
+                {
+                    throw invalid_argument("Wrong player number");
+                }
+                // Up, Down, Right, Left
+                pair<int,int> dest;
+                switch(direction)
+                {
+                    case Up : dest = make_pair(source.first+1,source.second);
+                    break;
+                    case Down : dest = make_pair(source.first-1,source.second);
+                    break;
+                    case Right : dest = make_pair(source.first,source.second+1);
+                    break;
+                    case Left : dest = make_pair(source.first,source.second-1);
+                    break;
+
+                }
+                if(dest.first < 0 || dest.second < 0 || dest.first >= board.size() || dest.second >= board[dest.first].size())
+                {
+                    throw invalid_argument("out of bounds"); 
+                }
+                if(board[dest.first][dest.second] != nullptr)
+                {
+                    throw invalid_argument("trying to move to a allocated space"); 
+                }
+                board[dest.first][dest.second] = src;
+                board[source.first][source.second]= nullptr;
+                src->attack(board,dest);
+            }
+
+
+
+         bool Board::has_soldiers(uint player_number) const {
+            int count=0;
+             for(int i=0; i<board.size();i++){
+                 for(int j=0; j<board[i].size();j++){
+                     Soldier* s= board[i][j];
+                     if (s!=nullptr){
+                     if( s->getNum()==player_number){
+                        return true;
+                     }
+                     }
+                 }
+
+             }
+             return false;
+         }
+
+
+       
+
+
+  /*
+    void Board::move(uint player_number, std::pair<int,int> source, MoveDIR direction) {
             int check =0;
             if ( player_number ==1 ) check =2;
             else check =1;
@@ -61,56 +126,6 @@ namespace WarGame {
 
 
         }
-
-
-
-
-         bool Board::has_soldiers(uint player_number) const {
-            int count=0;
-             for(int i=0; i<board.size();i++){
-                 for(int j=0; j<board[i].size();j++){
-                     Soldier* s= board[i][j];
-                     if (s!=nullptr){
-                     if( s->getNum()==player_number){
-                        return true;
-                     }
-                     }
-                 }
-
-             }
-             return false;
-         }
-
-
-       
-
-
-  /*
-    while ( s == nullptr){
-
-      
-        Soldier *s = nullptr;
-    int first = source.first;
-    int second = source.second;
-    int up=1 , right =1 , down =1 ,left=1;
-        if (first -up >= 0 &&  board[first-up][second] != nullptr ) s= board[first-up][second];
-        else if (first +down < board.size() &&  board[first+down][second] != nullptr ) s= board[first+down][second];
-        else if (second -left >= 0 &&  board[first][second-left] != nullptr ) s= board[first][second-left];
-        else if (second +right < board[0].size() &&  board[first][second+right] != nullptr ) s= board[first][second+right];
-        //
-        else if (first -up >= 0  && second -left >= 0  && board[first-up][second-left] != nullptr )  s= board[first-up][second-left];
-        else if (first -up >= 0  && second +right < board[0].size() && board[first-up][second+right] != nullptr ) s= board[first-up][second+right];
-        else if (first +down < board.size() && second +right < board[0].size() && board[first+down][second+right] != nullptr ) s= board[first+down][second+right];
-        else if (first +down < board.size() && second -left >= 0  && board[first+down][second-left] != nullptr )  s= board[first+down][second-left];
-    down++;
-    up++;
-        if (first -up >= 0  && second -left >= 0  && board[first-up][second-left] != nullptr )  s= board[first-up][second-left];
-        else if (first -up >= 0  && second +right < board[0].size() && board[first-up][second+right] != nullptr ) s= board[first-up][second+right];
-        else if (first +down < board.size() && second +right < board[0].size() && board[first+down][second+right] != nullptr ) s= board[first+down][second+right];
-        else if (first +down < board.size() && second -left >= 0  && board[first+down][second-left] != nullptr )  s= board[first+down][second-left];
-
-    left++;
-    right++;
 
     */
     

@@ -13,7 +13,7 @@ class Soldier{
     uint num_player;
 
     public:
-    Soldier(int max_health,int damage , int num_player) :
+    Soldier(uint max_health,uint damage , uint num_player) :
        max_health_points(max_health), health_points(max_health) , damage(damage) , num_player(num_player)
     {} 
     virtual ~Soldier(){};

@@ -13,8 +13,8 @@ class Paramedic : public  Soldier {
 
 public:
 
-Paramedic(int num_p) : Soldier(max_health_point_para , Damage_para , num_p){}
-Paramedic(int max_health_point , int damage , int num_p) : Soldier(max_health_point , damage , num_p){}
+Paramedic(uint num_p) : Soldier(max_health_point_para , Damage_para , num_p){}
+Paramedic(uint max_health_point , uint damage , uint num_p) : Soldier(max_health_point , damage , num_p){}
 void attack(vector<vector<Soldier *>> &board, pair<int, int> location);
 
 };

@@ -1,9 +1,6 @@
 #include "FootSoldier.hpp"
 #include "math.h"
 
-using namespace std;
-
-
 void FootSoldier::attack(vector<vector<Soldier *>> &board, pair<int, int> dest)
 {
 
@@ -42,11 +39,7 @@ void FootSoldier::attack(vector<vector<Soldier *>> &board, pair<int, int> dest)
             s->setHealth(hp);
         }
         
-        // s->setHP(s->getCurrHP() - board[dest.first][dest.second]->getact());
-        //     if (s->getCurrHP() <= 0)
-        //     {
-        //         board[ci][cj] = nullptr;
-        //     }
+        
     }
 }
 

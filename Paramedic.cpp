@@ -1,8 +1,69 @@
 #include "Paramedic.hpp"
 
-using namespace std;
+
+void Paramedic::attack(vector<vector<Soldier *>> &board, pair<int, int> dest)
+{
+    int iter = 1;
+    for (int x = -iter; x <= iter; x++)
+    {
+
+        Soldier *s;
+        // iter,x
+        if (dest.first + iter >= 0 && dest.first + iter < board.size())
+        {
+            if (dest.second + x >= 0 && dest.second + x < board[dest.first + iter].size())
+            {
+                s = board[dest.first + iter][dest.second + x];
+                if (s != nullptr && s->getNum() == board[dest.first][dest.second]->getNum())
+                {
+                    s->setHealth(s->getMaxHealth());
+                }
+            }
+        }
+        // -iter,x
+        if (dest.first - iter >= 0 && dest.first - iter < board.size())
+        {
+            if (dest.second + x >= 0 && dest.second + x < board[dest.first - iter].size())
+            {
+                s = board[dest.first - iter][dest.second + x];
+                if (s != nullptr && s->getNum() == board[dest.first][dest.second]->getNum())
+                {
+                     s->setHealth(s->getMaxHealth());
+                }
+            }
+        }
+
+        //x,-iter
+        if (dest.first + x >= 0 && dest.first + x < board.size())
+        {
+            if (dest.second - iter >= 0 && dest.second - iter < board[dest.first + x].size())
+            {
+                s = board[dest.first + x][dest.second - iter];
+                if (s != nullptr && s->getNum() == board[dest.first][dest.second]->getNum())
+                {
+                    s->setHealth(s->getMaxHealth());
+                }
+            }
+        }
+        //x,iter
+        if (dest.first + x >= 0 && dest.first + x < board.size())
+        {
+            if (dest.second + iter >= 0 && dest.second + iter < board[dest.first + x].size())
+            {
+                s = board[dest.first + x][dest.second + iter];
+                if (s != nullptr && s->getNum() == board[dest.first][dest.second]->getNum())
+                {
+                    s->setHealth(s->getMaxHealth());
+                }
+            }
+        }
+    }
+}
 
 
+
+
+/*
    //cure all te soldier that are 1 step close to him of the same player
     void Paramedic :: attack(vector<vector<Soldier *>> &board, pair<int, int> location){
        Soldier *s = board[location.first][location.second];
@@ -58,6 +119,6 @@ using namespace std;
        }
     }
 
-
+*/
 
 
