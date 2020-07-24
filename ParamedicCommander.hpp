@@ -4,8 +4,8 @@
 using namespace std;
 
 
-const int max_health_point_paracom = 100;
-const int Damage_paracom = 200;
+const int max_health_point_paracom = 200;
+const int Damage_paracom = 100;
 
 class ParamedicCommander : public  Paramedic {
 
